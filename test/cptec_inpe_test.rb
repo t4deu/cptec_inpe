@@ -1,11 +1,32 @@
 require 'test_helper'
 
-class CptecInpeTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::CptecInpe::VERSION
+describe CptecInpe do
+  let(:city_code) { 123 }
+  let(:client) { CptecInpe.new city_code }
+
+  it "version must be defined" do
+    CptecInpe::VERSION.wont_be_nil
   end
 
-  def test_it_does_something_useful
-    assert false
+  describe "Client" do
+    it "must set location" do
+      CptecInpe.new(city_code).location.must_equal city_code
+    end
+
+    it "must fetch today waves forecast" do
+      client.today_waves city_code
+    end
+
+    it "must fetch next days waves forecast" do
+      client.next_days_waves city_code
+    end
+
+    it "must fetch today weather forecast" do
+      client.today
+    end
+
+    it "must fetch next days weather forecast" do
+      client.next_days
+    end
   end
 end
