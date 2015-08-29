@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe CptecInpe do
-  let(:city_code) { 123 }
+  let(:city_code) { 231 }
   let(:client) { CptecInpe.new city_code }
 
   it "version must be defined" do
@@ -14,19 +14,15 @@ describe CptecInpe do
     end
 
     it "must fetch today waves forecast" do
-      client.today_waves city_code
+      client.waves_today['cidade'].wont_be_empty
     end
 
     it "must fetch next days waves forecast" do
-      client.next_days_waves city_code
+      client.waves_next_days['cidade'].wont_be_empty
     end
 
-    it "must fetch today weather forecast" do
-      client.today
-    end
-
-    it "must fetch next days weather forecast" do
-      client.next_days
+    it "must fetch weather forecast" do
+      client.forecast['cidade'].wont_be_empty
     end
   end
 end
