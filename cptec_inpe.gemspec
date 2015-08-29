@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tadeu.valentt@gmail.com"]
 
   spec.summary       = %q{Api Client for the CPTEC/INPE weather forecast.}
-  spec.description   = %q{Api Client for the CPTEC/INPE weather forecast.}
+  spec.description   = %q{Api Client for the CPTEC/INPE weather and waves forecast.}
   spec.homepage      = "https://github.com/t4deu/cptec_inpe"
   spec.license       = "MIT"
 
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest"
-  spec.add_development_dependency "httparty"
+  spec.add_development_dependency "httparty", "~> 0.13.5"
 end
