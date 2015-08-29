@@ -1,5 +1,9 @@
 # CptecInpe
 
+[![Build Status](https://travis-ci.org/t4deu/cptec_inpe.svg?branch=master)](https://travis-ci.org/t4deu/cptec_inpe)
+[![Coverage Status](https://coveralls.io/repos/t4deu/cptec_inpe/badge.svg?branch=master&service=github)](https://coveralls.io/github/t4deu/cptec_inpe?branch=master)
+[![security](https://hakiri.io/github/t4deu/cptec_inpe/master.svg)](https://hakiri.io/github/t4deu/cptec_inpe/master)
+
 Api Client gem for the CPTEC/INPE weather forecast.
 
 TODO: Delete this and the text above, and describe your gem
