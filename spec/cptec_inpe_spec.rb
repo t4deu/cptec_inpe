@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'spec_helper'
 
 describe CptecInpe do
   let(:city_code) { 231 }
