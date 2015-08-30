@@ -6,8 +6,6 @@
 
 Api Client gem for the CPTEC/INPE weather forecast.
 
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -26,8 +24,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+  client = CptecInpe.new "Rio de janeiro"
 
+  client.location = "São Paulo" # Change current location
+  client.forecast               # List of next days weather forecast
+  client.waves_today            # Today waves forecast
+  client.waves_next_days        # List of next days waves forecast
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -36,8 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cptec_inpe.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/t4deu/cptec_inpe.
 
 ## License
 
