@@ -54,4 +54,16 @@ describe CptecInpe do
       end
     end
   end
+
+  describe "location is not seaside" do
+    let(:client) { CptecInpe.new "Brasília" }
+
+    it "won't fetch today waves forecast" do
+      client.waves_today.must_be_nil
+    end
+
+    it "won't fetch next days waves forecast" do
+      client.waves_next_days.must_be_nil
+    end
+  end
 end

@@ -61,6 +61,9 @@ class CptecInpe
   end
 
   def get(path_format)
-    self.class.get(path_format % @location_code) unless @location_code.nil?
+    unless @location_code.nil?
+      response = self.class.get(path_format % @location_code)
+      response if response.success?
+    end
   end
 end
