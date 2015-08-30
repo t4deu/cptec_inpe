@@ -30,10 +30,11 @@ class CptecInpe
 
     path = "#{base_path}/listaCidades"
     cities = self.class.get(path, options)['cidades']
-    # TODO please improve this
-    unless cities.nil?
-      cities['cidate'].is_a?(Array) ? cities.first : cities['cidade']
-    end
+
+    return if cities.nil?
+    return cities.first if cities['cidate'].is_a?(Array)
+
+    cities["cidade"]
   end
 
   def waves_today

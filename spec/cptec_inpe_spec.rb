@@ -14,11 +14,11 @@ describe CptecInpe do
       end
 
       it "must fetch today waves forecast" do
-        client.waves_today.wont_be_empty
+        client.waves_today.wont_be_nil
       end
 
       it "must fetch next days waves forecast" do
-        client.waves_next_days.wont_be_empty
+        client.waves_next_days.wont_be_nil
       end
 
       it "must fetch weather forecast" do
