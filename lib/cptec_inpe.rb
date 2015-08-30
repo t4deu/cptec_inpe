@@ -14,10 +14,12 @@ class CptecInpe
   end
 
   def location=(location)
+    @location_code = nil
+
     city = find_location(location)
 
     unless city.nil?
-      @location_code = city['id']
+      @location_code = city["id"]
     end
   end
 
@@ -29,24 +31,27 @@ class CptecInpe
     }
 
     path = "#{base_path}/listaCidades"
-    cities = self.class.get(path, options)['cidades']
+    cities = self.class.get(path, options)["cidades"]
 
     return if cities.nil?
-    return cities.first if cities['cidate'].is_a?(Array)
+    return cities["cidade"].first if cities["cidade"].is_a?(Array)
 
     cities["cidade"]
   end
 
   def waves_today
-    get "#{base_path}/cidade/%s/dia/0/ondas.xml"
+    response = get("#{base_path}/cidade/%s/dia/0/ondas.xml")
+    response["cidade"] if response
   end
 
   def waves_next_days
-    get "#{base_path}/cidade/%s/todos/tempos/ondas.xml"
+    response = get("#{base_path}/cidade/%s/todos/tempos/ondas.xml")
+    response["cidade"]["previsao"] if response
   end
 
   def forecast
-    get "#{base_path}/cidade/%s/previsao.xml"
+    response = get("#{base_path}/cidade/%s/previsao.xml")
+    response["cidade"]["previsao"] if response
   end
 
   private
