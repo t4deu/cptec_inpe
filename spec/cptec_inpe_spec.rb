@@ -1,28 +1,49 @@
 require 'spec_helper'
 
 describe CptecInpe do
-  let(:city_code) { 231 }
-  let(:client) { CptecInpe.new city_code }
-
   it "version must be defined" do
     CptecInpe::VERSION.wont_be_nil
   end
 
   describe "Client" do
-    it "must set location" do
-      CptecInpe.new(city_code).location.must_equal city_code
+    describe "location is valid" do
+      let(:client) { CptecInpe.new "João Pessoa" }
+
+      it "must set location" do
+        client.location_code.wont_be_nil
+      end
+
+      it "must fetch today waves forecast" do
+        client.waves_today.wont_be_empty
+      end
+
+      it "must fetch next days waves forecast" do
+        client.waves_next_days.wont_be_empty
+      end
+
+      it "must fetch weather forecast" do
+        client.forecast.wont_be_nil
+      end
     end
 
-    it "must fetch today waves forecast" do
-      client.waves_today['cidade'].wont_be_empty
-    end
+    describe "location is invalid" do
+      let(:client) { CptecInpe.new 'Cuité do sul da pororoca' }
 
-    it "must fetch next days waves forecast" do
-      client.waves_next_days['cidade'].wont_be_empty
-    end
+      it "won't set location" do
+        client.location_code.must_be_nil
+      end
 
-    it "must fetch weather forecast" do
-      client.forecast['cidade'].wont_be_empty
+      it "won't fetch today waves forecast" do
+        client.waves_today.must_be_nil
+      end
+
+      it "won't fetch next days waves forecast" do
+        client.waves_next_days.must_be_nil
+      end
+
+      it "won't fetch weather forecast" do
+        client.forecast.must_be_nil
+      end
     end
   end
 end
