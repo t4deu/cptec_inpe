@@ -30,7 +30,7 @@ class CptecInpe
       }
     }
 
-    path = "#{base_path}/listaCidades"
+    path = build_path "/listaCidades"
     cities = self.class.get(path, options)["cidades"]
 
     return if cities.nil?
@@ -40,30 +40,35 @@ class CptecInpe
   end
 
   def waves_today
-    response = get("#{base_path}/cidade/%s/dia/0/ondas.xml")
+    response = get("/cidade/%s/dia/0/ondas.xml")
     response["cidade"] if response
   end
 
   def waves_next_days
-    response = get("#{base_path}/cidade/%s/todos/tempos/ondas.xml")
-    response["cidade"]["previsao"] if response
+    response = get("/cidade/%s/todos/tempos/ondas.xml")
+    get_forecast(response) if response
   end
 
   def forecast
-    response = get("#{base_path}/cidade/%s/previsao.xml")
-    response["cidade"]["previsao"] if response
+    response = get("/cidade/%s/previsao.xml")
+    get_forecast(response) if response
   end
 
   private
 
-  def base_path
-    "/XML"
-  end
-
   def get(path_format)
     unless @location_code.nil?
-      response = self.class.get(path_format % @location_code)
+      path = build_path(path_format % @location_code)
+      response = self.class.get(path)
       response if response.success?
     end
+  end
+
+  def build_path(path)
+    "/XML#{path}"
+  end
+
+  def get_forecast(response)
+    response["cidade"]["previsao"]
   end
 end
